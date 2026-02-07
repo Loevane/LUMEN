@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Life Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Special+Gothic+Expanded+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/css/styles.css" />
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header class="hero">
+      <div class="hero__overlay">
+        <div class="hero__content">
+          <h1 id="current-date"></h1>
+          <p id="current-time"></p>
+          <p id="daily-quote"></p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= DASHBOARD ================= -->
+    <main class="dashboard">
+      <!-- METEO -->
+      <section class="weather card">
+        <p>📍 Position actuelle</p>
+        <img id="weatherIcon" alt="Météo" />
+        <p id="weatherTemp">--°C</p>
+      </section>
+
+      <!-- MODULES -->
+      <section class="modules">
+        <a href="todo.html" class="module-card bg-daily"><span>Daily</span></a>
+        <a href="habits.html" class="module-card bg-planners"
+          ><span>Habits</span></a
+        >
+        <a href="#" class="module-card bg-personal"><span>Personal</span></a>
+        <a href="#" class="module-card bg-goals"><span>Goals</span></a>
+      </section>
+
+      <!-- TIMERS -->
+      <section class="timers-wrapper">
+        <div class="timers">
+          <button class="timer-btn" id="openStopwatch">⏱</button>
+          <button class="timer-btn" id="openTimer">⏲</button>
+          <button class="timer-btn" id="openPomodoro">🍅</button>
+        </div>
+
+        <!-- PANELS CHRONOS -->
+        <div class="timer-panels">
+          <div class="timer-panel hidden" id="stopwatch">
+            <p id="stopwatchTime">00:00</p>
+            <button id="startStopwatch">Démarrer</button>
+            <button id="pauseStopwatch">Pause</button>
+            <button id="resetStopwatch">Reset</button>
+          </div>
+
+          <div class="timer-panel hidden" id="timer">
+            <input type="number" id="timerInput" placeholder="Minutes" />
+            <p id="timerDisplay">00:00</p>
+            <div class="actions">
+              <button id="startTimer">Démarrer</button>
+              <button id="pauseTimer">Pause</button>
+            </div>
+          </div>
+
+          <div class="timer-panel hidden" id="pomodoro">
+            <p id="pomodoroTime">25:00</p>
+            <div class="actions">
+              <button id="startPomodoro">Démarrer</button>
+              <button id="pausePomodoro">Pause</button>
+              <button id="resetPomodoro">Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OVERVIEW + SPOTIFY -->
+      <section class="cards-wrapper">
+        <div class="card overview">
+          <h2>Overview</h2>
+          <p><strong id="todoCount">0</strong> tâches en attente</p>
+          <p><strong id="habitCount">0</strong> habitudes actives</p>
+        </div>
+
+        <div class="card spotify">
+          <h2>Play Now</h2>
+          <iframe
+            src="https://open.spotify.com/embed/playlist/1HVP7E8RkpieiGSxvATJbU"
+            width="350"
+            height="400"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+
+    <!-- AUDIO -->
+    <audio id="bell" src="assets/audio/bell.wav" preload="auto"></audio>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+  </body>
+</html>

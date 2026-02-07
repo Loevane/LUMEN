@@ -1,0 +1,11 @@
+// ==================== INDEX SCSS ====================
+// Fichier principal qui importe toutes les parties de l'application
+
+// Variables globales
+@import "variables";
+
+// Mixins utiles
+@import "mixins";
+
+// Styles globaux et composants
+@import "main";

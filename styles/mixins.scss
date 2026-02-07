@@ -1,0 +1,67 @@
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin card(
+  $bg: var(--bg-card),
+  $radius: var(--radius),
+  $padding: 20px,
+  $shadow: var(--shadow-soft)
+) {
+  background: $bg;
+  border-radius: $radius;
+  padding: $padding;
+  box-shadow: $shadow;
+}
+
+@mixin button(
+  $bg: var(--accent),
+  $color: white,
+  $radius: var(--radius-small),
+  $padding: var(--button-padding)
+) {
+  background: $bg;
+  color: $color;
+  border: none;
+  border-radius: $radius;
+  padding: $padding;
+  cursor: pointer;
+  @include transition();
+}
+
+@mixin transition($props: all, $time: 0.3s, $ease: ease) {
+  transition: $props $time $ease;
+}
+
+@mixin placeholder($color) {
+  &::placeholder {
+    color: $color;
+  }
+}
+
+@mixin fade($duration: 0.25s, $ease: ease) {
+  animation: fade $duration $ease;
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Hover simple pour card ou module */
+@mixin hover-card($translateY: -6px, $shadow: var(--shadow-soft), $transition: 0.3s) {
+  transition: transform $transition ease, box-shadow $transition ease;
+  &:hover {
+    transform: translateY($translateY);
+    box-shadow: $shadow;
+  }
+}
+

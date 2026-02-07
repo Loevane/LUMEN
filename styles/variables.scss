@@ -1,0 +1,31 @@
+:root {
+  /* Couleurs principales */
+  --bg-main: #0d0f14;
+  --bg-card: #151824;
+  --bg-hero-overlay: rgba(0, 0, 0, 0.35);
+  --text-main: #e6e8ef;
+  --text-muted: #9aa0b4;
+  --accent: #8b5cf6;
+  --accent2: #663fc2;
+  --done-opacity: 0.5;
+
+  /* Bordures et rayons */
+  --radius: 14px;
+  --radius-small: 8px;
+
+  /* Ombres */
+  --shadow-soft: 0 10px 30px rgba(255, 255, 255, 0.185);
+
+  /* Backgrounds spécifiques */
+  --todo-bg: #1c2140;
+  --todo-sidebar-bg: #12162a;
+  --todo-content-bg: #161a2d;
+
+  /* Inputs / boutons */
+  --input-padding: 12px;
+  --button-padding: 10px 14px;
+
+  /* Fonts */
+  --font-main: "Inter", sans-serif;
+  --font-special: "Special Gothic Expanded One", sans-serif;
+}

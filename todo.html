@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>To-do</title>
+    <link rel="stylesheet" href="styles/css/styles.css" />
+  </head>
+  <body class="page">
+    <section class="todo-layout">
+      <!-- SIDEBAR LISTES -->
+      <aside class="todo-sidebar">
+        <h2>Mes listes</h2>
+        <ul id="lists" class="lists"></ul>
+        <button id="addList" class="add-list-btn">+ Nouvelle liste</button>
+      </aside>
+
+      <!-- CONTENU TODO -->
+      <main class="todo-content fade">
+        <!-- HEADER LISTE -->
+        <header class="list-header">
+          <div class="list-meta">
+            <select id="iconPicker" class="picker">
+              <option>📌</option>
+              <option>📝</option>
+              <option>🔥</option>
+              <option>🎯</option>
+              <option>💞</option>
+              <option>🛩️</option>
+              <option>🎥</option>
+              <option>🎶</option>
+              <option>📖</option>
+            </select>
+            <input type="color" id="colorPicker" class="color-picker" />
+            <h1 id="listTitle" contenteditable="true"></h1>
+          </div>
+          <div class="list-actions">
+            <button id="duplicateList">⧉</button>
+            <button id="deleteList">🗑</button>
+          </div>
+        </header>
+
+        <!-- LISTE TÂCHES -->
+        <ul id="todoList" class="list"></ul>
+
+        <!-- FOOTER -->
+        <footer class="todo-footer">
+          <button id="toggleDone" class="ghost">
+            Afficher / masquer tâches terminées
+          </button>
+          <form id="todoForm" class="input-group">
+            <input id="todoInput" placeholder="Ajouter une tâche" />
+            <button type="submit">+</button>
+          </form>
+        </footer>
+      </main>
+    </section>
+
+    <script src="js/todo.js"></script>
+  </body>
+</html>
