@@ -180,14 +180,17 @@ function renderTodos() {
     li.draggable = true;
     if (todo.done) li.classList.add("done");
 
+    const checkboxId = `todo-${list.id}-${index}`; // ID unique
+
     li.innerHTML = `
-      <div class="todo-left">
-        <input type="checkbox" ${todo.done ? "checked" : ""}>
-        <span class="todo-text" contenteditable="true">${todo.text}</span>
-      </div>
-      <button class="important"><img src="/assets/icons/${todo.important ? "star_check.png" : "star.png"}" /></button>
-      <button class="delete">✕</button>
-    `;
+    <div class="todo-left">
+      <input type="checkbox" id="${checkboxId}" ${todo.done ? "checked" : ""} />
+      <label for="${checkboxId}"></label>
+      <span class="todo-text" contenteditable="true">${todo.text}</span>
+    </div>
+    <button class="important"><img src="/assets/icons/${todo.important ? "star_check.png" : "star.png"}" /></button>
+    <button class="delete">✕</button>
+  `;
 
     // Checkbox
     li.querySelector("input").onchange = (e) => {

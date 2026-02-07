@@ -1,9 +1,18 @@
-/* ========================= GLOBAL ========================= */ 
+/* ========================================================== */
+/* ------------------------- STYLES ------------------------ */
+/* ========================================================== */
+
+/* ========================= GLOBAL ========================= */
+html,
 body {
   margin: 0;
   font-family: var(--font-main);
   background: var(--bg-main);
   color: var(--text-main);
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ========================= INPUTS ========================= */
@@ -107,13 +116,20 @@ button {
       }
     }
 
-    .bg-daily { background: url("/assets/daily.jpg") center / cover; }
-    .bg-planners { background: url("/assets/planners.jpg") center / cover; }
-    .bg-personal { background: url("/assets/personal.jpg") center / cover; }
-    .bg-goals { background: url("/assets/goals.jpg") center / cover; }
+    .bg-daily {
+      background: url("/assets/daily.jpg") center / cover;
+    }
+    .bg-planners {
+      background: url("/assets/planners.jpg") center / cover;
+    }
+    .bg-personal {
+      background: url("/assets/personal.jpg") center / cover;
+    }
+    .bg-goals {
+      background: url("/assets/goals.jpg") center / cover;
+    }
   }
 
-  /* ========================= TIMERS ========================= */
   .timers-wrapper {
     display: flex;
     flex-direction: column;
@@ -185,7 +201,6 @@ button {
   flex-direction: column;
   gap: 24px;
 
-  /* Ligne avec overview et spotify */
   .overview-spotify-wrapper {
     display: flex;
     gap: 16px;
@@ -194,7 +209,6 @@ button {
     .overview {
       flex: 0 0 75%;
     }
-
     .spotify {
       flex: 0 0 15%;
     }
@@ -218,12 +232,20 @@ button {
   padding: 40px;
 }
 
+.todo_page {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 /* ========================= TODO PAGE ========================= */
 .todo-layout {
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 32px;
-  height: calc(100vh - 80px);
+  flex: 1 1 auto;
+  min-height: 0;
 
   .todo-sidebar {
     display: flex;
@@ -231,15 +253,21 @@ button {
     background: var(--todo-sidebar-bg);
     border-radius: var(--radius);
     padding: 20px;
+    overflow-y: auto;
+    min-height: 0;
 
     h2 {
       text-align: center;
+      flex-shrink: 0;
     }
 
     ul {
       list-style: none;
-      flex: 1;
+      flex: 1 1 auto;
       overflow-y: auto;
+      margin: 0;
+      padding: 0;
+      min-height: 0;
 
       li {
         padding: 10px 12px;
@@ -251,44 +279,75 @@ button {
         align-items: center;
         border-left: 4px solid transparent;
         @include transition();
-        transition:
-          transform 0.2s ease,
-          opacity 0.2s ease,
-          box-shadow 0.2s ease;
 
-        &:hover { background: #1c2140; }
-        &.active { background: var(--accent); }
-
+        &:hover {
+          background: #1c2140;
+        }
+        &.active {
+          background: var(--accent);
+        }
         &.dragging {
           opacity: 0.9;
           transform: scale(1.05);
-          box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
           z-index: 1000;
           border-radius: 12px;
         }
-
-        &.drag-over { transform: scale(0.95); }
+        &.drag-over {
+          transform: scale(0.95);
+        }
       }
     }
 
-    .add-list-btn { margin-top: auto; @include button(); }
+    .add-list-btn {
+      margin-top: auto;
+      flex-shrink: 0;
+      @include button();
+    }
   }
 
   .todo-content {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     background: url("/assets/backgroundToDo.png") center / cover no-repeat;
     border-radius: var(--radius);
     padding: 24px;
+    min-height: 0;
 
-    #todoList { flex: 1; overflow-y: auto; }
+    #todoList {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      min-height: 0;
+      padding-right: 8px;
+    }
 
-    .todo-footer { margin-top: auto; display: flex; flex-direction: column; }
+    .todo-footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
 
-    #todoForm { display: flex; gap: 8px;
+      button{
+        margin-bottom: 5px;
+      }
 
-      input { flex: 1; @include placeholder(#9fa4c4); border-radius: var(--radius-small); padding: 10px; }
-      button { @include button(); }
+      #todoForm {
+        display: flex;
+        gap: 8px;
+
+        input {
+          flex: 1;
+          @include placeholder(white);
+          border-radius: var(--radius-small);
+          padding: 20px;
+          background-color: var(--todo-bg)
+        }
+
+        button {
+          @include button();
+        }
+      }
     }
 
     .list-header {
@@ -297,18 +356,45 @@ button {
       align-items: center;
       margin-bottom: 16px;
 
-      .list-meta { @include flex-center(row, flex-start, center); gap: 12px;
+      .list-meta {
+        @include flex-center(row, flex-start, center);
+        gap: 12px;
 
-        #listTitle { margin: 0; font-size: 1.6rem; outline: none; }
+        #listTitle {
+          margin: 0;
+          font-size: 1.6rem;
+          outline: none;
+        }
 
-        .picker, .color-picker { cursor: pointer; border: none; border-radius: var(--radius-small); }
+        .picker,
+        .color-picker {
+          cursor: pointer;
+          border: none;
+          border-radius: var(--radius-small);
+        }
 
-        .picker { background: #1c2140; font-size: 30px; padding: 4px 6px; color: white; }
+        .picker {
+          background: #1c2140;
+          font-size: 30px;
+          padding: 4px 6px;
+          color: white;
+        }
 
-        .color-picker { width: 34px; height: 34px; padding: 0; border-radius: 60%; background: none; }
+        .color-picker {
+          width: 34px;
+          height: 34px;
+          padding: 0;
+          border-radius: 60%;
+          background: none;
+        }
       }
 
-      .list-actions button { @include button(); font-size: 25px; padding: 0; width: 35px; }
+      .list-actions button {
+        @include button();
+        font-size: 25px;
+        padding: 0;
+        width: 35px;
+      }
     }
 
     .todo-item {
@@ -319,31 +405,102 @@ button {
       border-radius: 10px;
       background: var(--todo-bg);
       margin-bottom: 8px;
-      transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+      border-radius: var(--radius-small);
+        transform: 0.2s ease,
+        opacity 0.2s ease,
+        box-shadow 0.2s ease;
 
-      &.done .todo-text { text-decoration: line-through; opacity: var(--done-opacity); }
-      &.dragging { opacity: 0.9; transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 1000; border-radius: 12px; }
-      &.drag-over { transform: scale(0.95); }
-
-      .todo-left { @include flex-center(row, flex-start, center); gap: 12px; flex: 1;
-        input[type="checkbox"] { width: 16px; height: 16px; appearance: none; border: 2px solid #888; border-radius: 50%; cursor: pointer; margin: 0;
-          &:checked { background: var(--accent); box-shadow: 0 0 8px var(--accent); transform: scale(1.2); transition: all 0.2s ease; }
-        }
-        .todo-text { outline: none; text-align: left; }
+      &.done .todo-text {
+        text-decoration: line-through;
+        opacity: var(--done-opacity);
       }
 
-      .delete { @include button(var(--accent)); padding: 4px 10px; }
+      &.dragging {
+        opacity: 0.9;
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        z-index: 1000;
+        border-radius: 12px;
+      }
 
-      .important { background: none; border: none; cursor: pointer; padding: 4px; margin-right: 5px; display: flex; align-items: center; justify-content: center;
-        img { width: 20px; height: 20px; }
+      &.drag-over {
+        transform: scale(0.95);
+      }
+
+      .todo-left {
+        @include flex-center(row, flex-start, center);
+        gap: 12px;
+        flex: 1;
+
+        input[type="checkbox"] {
+          display: none; // masquer la vraie checkbox
+        }
+
+        label {
+          width: 12px;
+          height: 12px;
+          border: 2px solid #888;
+          border-radius: 50%;
+          display: inline-block;
+          cursor: pointer;
+          position: relative;
+          transition: all 0.2s ease;
+
+          &:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.2s ease;
+          }
+        }
+
+        input[type="checkbox"]:checked + label:after {
+          transform: translate(-50%, -50%) scale(1);
+        }
+
+        .todo-text {
+          outline: none;
+          text-align: left;
+        }
+      }
+
+      .delete {
+        @include button(var(--accent));
+        padding: 4px 10px;
+      }
+
+      .important {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        margin-right: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
 
-    .fade { @include fade(); }
+    .fade {
+      @include fade();
+    }
   }
 }
 
-.hidden { display: none !important; }
+.hidden {
+  display: none !important;
+}
 
 /* ========================= WEATHER ========================= */
 .weather {
@@ -351,24 +508,137 @@ button {
   max-width: 300px;
   text-align: center;
 
-  #weatherTemp { font-size: 1.5rem; font-weight: 600; margin: 0; }
-  #weatherIcon { width: 55px; }
+  #weatherTemp {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  #weatherIcon {
+    width: 55px;
+  }
 }
 
 /* ========================= ANIMATIONS ========================= */
-@keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 0.7; } }
-@keyframes slideFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes shrink { to { opacity: 0; transform: scale(0.8); } }
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes shrink {
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
 
-.confetti { position: fixed; top: -10px; width: 8px; height: 8px; background: var(--accent); animation: fall 2s linear forwards; z-index: 9999; }
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  animation: fall 2s linear forwards;
+  z-index: 9999;
+}
 
 /* ========================= EMPTY ========================= */
-.empty-state { display: flex; justify-content: center; align-items: center; height: 100%; width: 100%; }
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
 
-.empty-box { width: 280px; min-height: 200px; background: rgba(0,0,0,0.397); display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 12px; text-align: center; padding: 20px; font-style: italic; color: #ccc; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+.empty-box {
+  width: 280px;
+  min-height: 200px;
+  background: rgba(0, 0, 0, 0.397);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
-  .empty-icon { width: 70px; height: auto; margin-bottom: 10px; }
-  .empty-main { font-weight: bold; margin: 4px 0; }
-  .empty-sub { font-size: 0.85rem; margin-top: 2px; line-height: 1.2; }
+  .empty-icon {
+    width: 70px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .empty-main {
+    font-weight: bold;
+    margin: 4px 0;
+  }
+  .empty-sub {
+    font-size: 0.85rem;
+    margin-top: 2px;
+    line-height: 1.2;
+  }
+}
+
+.app-header {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 24px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  z-index: 10;
+
+  nav {
+    margin-left: 30px;
+    .slash{
+      margin: 5px;
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    height: 100%;
+
+    img {
+      width: 150px;
+      height: auto;
+    }
+  }
+}
+
+/* ========================= SCROLLBAR ========================= */
+#todoList {
+  @include custom-scrollbar(#8f6bb3, #1c1f3a);
+}
+.todo-sidebar ul {
+  @include custom-scrollbar(#6f3fc7, #1c1f3a);
 }

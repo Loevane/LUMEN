@@ -57,11 +57,41 @@
 }
 
 /* Hover simple pour card ou module */
-@mixin hover-card($translateY: -6px, $shadow: var(--shadow-soft), $transition: 0.3s) {
-  transition: transform $transition ease, box-shadow $transition ease;
+@mixin hover-card(
+  $translateY: -6px,
+  $shadow: var(--shadow-soft),
+  $transition: 0.3s
+) {
+  transition:
+    transform $transition ease,
+    box-shadow $transition ease;
   &:hover {
     transform: translateY($translateY);
     box-shadow: $shadow;
   }
 }
 
+/* custom de la side bar de scroll */
+@mixin custom-scrollbar($thumb-color, $track-color) {
+  scrollbar-width: thin;
+  scrollbar-color: $thumb-color $track-color;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+    border-radius: 10px;
+    border: 2px solid $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: lighten($thumb-color, 15%);
+  }
+}

@@ -11,11 +11,11 @@
   --done-opacity: 0.5;
   /* Bordures et rayons */
   --radius: 14px;
-  --radius-small: 8px;
+  --radius-small: 4px;
   /* Ombres */
   --shadow-soft: 0 10px 30px rgba(255, 255, 255, 0.185);
   /* Backgrounds spécifiques */
-  --todo-bg: #1c2140;
+  --todo-bg: #121213ad;
   --todo-sidebar-bg: #12162a;
   --todo-content-bg: #161a2d;
   /* Inputs / boutons */
@@ -27,12 +27,21 @@
 }
 
 /* Hover simple pour card ou module */
+/* custom de la side bar de scroll */
+/* ========================================================== */
+/* ------------------------- STYLES ------------------------ */
+/* ========================================================== */
 /* ========================= GLOBAL ========================= */
+html,
 body {
   margin: 0;
   font-family: var(--font-main);
   background: var(--bg-main);
   color: var(--text-main);
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ========================= INPUTS ========================= */
@@ -103,7 +112,6 @@ button {
 /* ========================= DASHBOARD ========================= */
 .dashboard {
   padding: 32px;
-  /* ========================= TIMERS ========================= */
 }
 .dashboard .modules {
   display: flex;
@@ -215,7 +223,6 @@ button {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  /* Ligne avec overview et spotify */
 }
 .content .overview-spotify-wrapper {
   display: flex;
@@ -247,12 +254,20 @@ button {
   padding: 40px;
 }
 
+.todo_page {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 /* ========================= TODO PAGE ========================= */
 .todo-layout {
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 32px;
-  height: calc(100vh - 80px);
+  flex: 1 1 auto;
+  min-height: 0;
 }
 .todo-layout .todo-sidebar {
   display: flex;
@@ -260,14 +275,20 @@ button {
   background: var(--todo-sidebar-bg);
   border-radius: var(--radius);
   padding: 20px;
+  overflow-y: auto;
+  min-height: 0;
 }
 .todo-layout .todo-sidebar h2 {
   text-align: center;
+  flex-shrink: 0;
 }
 .todo-layout .todo-sidebar ul {
   list-style: none;
-  flex: 1;
+  flex: 1 1 auto;
   overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
 }
 .todo-layout .todo-sidebar ul li {
   padding: 10px 12px;
@@ -279,7 +300,6 @@ button {
   align-items: center;
   border-left: 4px solid transparent;
   transition: all 0.3s ease;
-  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
 }
 .todo-layout .todo-sidebar ul li:hover {
   background: #1c2140;
@@ -299,6 +319,7 @@ button {
 }
 .todo-layout .todo-sidebar .add-list-btn {
   margin-top: auto;
+  flex-shrink: 0;
   background: var(--accent);
   color: white;
   border: none;
@@ -309,33 +330,42 @@ button {
 }
 .todo-layout .todo-content {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   background: url("/assets/backgroundToDo.png") center/cover no-repeat;
   border-radius: var(--radius);
   padding: 24px;
+  min-height: 0;
 }
 .todo-layout .todo-content #todoList {
-  flex: 1;
+  flex: 1 1 auto;
   overflow-y: auto;
+  min-height: 0;
+  padding-right: 8px;
 }
 .todo-layout .todo-content .todo-footer {
   margin-top: auto;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
-.todo-layout .todo-content #todoForm {
+.todo-layout .todo-content .todo-footer button {
+  margin-bottom: 5px;
+}
+.todo-layout .todo-content .todo-footer #todoForm {
   display: flex;
   gap: 8px;
 }
-.todo-layout .todo-content #todoForm input {
+.todo-layout .todo-content .todo-footer #todoForm input {
   flex: 1;
   border-radius: var(--radius-small);
-  padding: 10px;
+  padding: 20px;
+  background-color: var(--todo-bg);
 }
-.todo-layout .todo-content #todoForm input::placeholder {
-  color: #9fa4c4;
+.todo-layout .todo-content .todo-footer #todoForm input::placeholder {
+  color: white;
 }
-.todo-layout .todo-content #todoForm button {
+.todo-layout .todo-content .todo-footer #todoForm button {
   background: var(--accent);
   color: white;
   border: none;
@@ -362,7 +392,8 @@ button {
   font-size: 1.6rem;
   outline: none;
 }
-.todo-layout .todo-content .list-header .list-meta .picker, .todo-layout .todo-content .list-header .list-meta .color-picker {
+.todo-layout .todo-content .list-header .list-meta .picker,
+.todo-layout .todo-content .list-header .list-meta .color-picker {
   cursor: pointer;
   border: none;
   border-radius: var(--radius-small);
@@ -400,7 +431,8 @@ button {
   border-radius: 10px;
   background: var(--todo-bg);
   margin-bottom: 8px;
-  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  border-radius: var(--radius-small);
+  transform: 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
 }
 .todo-layout .todo-content .todo-item.done .todo-text {
   text-decoration: line-through;
@@ -425,19 +457,32 @@ button {
   flex: 1;
 }
 .todo-layout .todo-content .todo-item .todo-left input[type=checkbox] {
-  width: 16px;
-  height: 16px;
-  appearance: none;
+  display: none;
+}
+.todo-layout .todo-content .todo-item .todo-left label {
+  width: 12px;
+  height: 12px;
   border: 2px solid #888;
   border-radius: 50%;
+  display: inline-block;
   cursor: pointer;
-  margin: 0;
-}
-.todo-layout .todo-content .todo-item .todo-left input[type=checkbox]:checked {
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
-  transform: scale(1.2);
+  position: relative;
   transition: all 0.2s ease;
+}
+.todo-layout .todo-content .todo-item .todo-left label:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+.todo-layout .todo-content .todo-item .todo-left input[type=checkbox]:checked + label:after {
+  transform: translate(-50%, -50%) scale(1);
 }
 .todo-layout .todo-content .todo-item .todo-left .todo-text {
   outline: none;
@@ -578,6 +623,78 @@ button {
   font-size: 0.85rem;
   margin-top: 2px;
   line-height: 1.2;
+}
+
+.app-header {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 24px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  z-index: 10;
+}
+.app-header nav {
+  margin-left: 30px;
+}
+.app-header nav .slash {
+  margin: 5px;
+}
+.app-header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  height: 100%;
+}
+.app-header .logo img {
+  width: 150px;
+  height: auto;
+}
+
+/* ========================= SCROLLBAR ========================= */
+#todoList {
+  scrollbar-width: thin;
+  scrollbar-color: #8f6bb3 #1c1f3a;
+}
+#todoList::-webkit-scrollbar {
+  width: 10px;
+}
+#todoList::-webkit-scrollbar-track {
+  background: #1c1f3a;
+  border-radius: 10px;
+}
+#todoList::-webkit-scrollbar-thumb {
+  background-color: #8f6bb3;
+  border-radius: 10px;
+  border: 2px solid #1c1f3a;
+}
+#todoList::-webkit-scrollbar-thumb:hover {
+  background-color: #b59ecd;
+}
+
+.todo-sidebar ul {
+  scrollbar-width: thin;
+  scrollbar-color: #6f3fc7 #1c1f3a;
+}
+.todo-sidebar ul::-webkit-scrollbar {
+  width: 10px;
+}
+.todo-sidebar ul::-webkit-scrollbar-track {
+  background: #1c1f3a;
+  border-radius: 10px;
+}
+.todo-sidebar ul::-webkit-scrollbar-thumb {
+  background-color: #6f3fc7;
+  border-radius: 10px;
+  border: 2px solid #1c1f3a;
+}
+.todo-sidebar ul::-webkit-scrollbar-thumb:hover {
+  background-color: #9b7ad8;
 }
 
 /*# sourceMappingURL=styles.css.map */
