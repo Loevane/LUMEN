@@ -36,7 +36,7 @@ button {
 /* ========================= HERO / HEADER ========================= */
 .hero {
   height: 320px;
-  background: url("../../assets/header.png") center / cover no-repeat;
+  background: url("/assets/header.png") center / cover no-repeat;
   position: relative;
   padding: 10px;
 
@@ -117,16 +117,16 @@ button {
     }
 
     .bg-daily {
-      background: url("../../assets/daily.jpg") center / cover;
+      background: url("/assets/daily.jpg") center / cover;
     }
     .bg-planners {
-      background: url("../../assets/planners.jpg") center / cover;
+      background: url("/assets/planners.jpg") center / cover;
     }
     .bg-personal {
-      background: url("../../assets/personal.jpg") center / cover;
+      background: url("/assets/personal.jpg") center / cover;
     }
     .bg-goals {
-      background: url("../../assets/goals.jpg") center / cover;
+      background: url("/assets/goals.jpg") center / cover;
     }
   }
 
@@ -310,7 +310,7 @@ button {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    background: url("../../assets/backgroundToDo.png") center / cover no-repeat;
+    background: url("/assets/backgroundToDo.png") center / cover no-repeat;
     border-radius: var(--radius);
     padding: 24px;
     min-height: 0;
