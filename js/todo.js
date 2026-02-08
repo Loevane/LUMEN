@@ -109,7 +109,8 @@ function renderLists() {
 function createListElement(list, draggable) {
   const li = document.createElement("li");
   li.innerHTML = `<span>${list.icon}</span> ${list.name}`;
-  li.style.borderLeft = `4px solid ${list.color}`;
+  li.style.borderLeft = `6px solid ${list.color}`;
+
   li.querySelector("span").style.color = list.color;
 
   if (list.id === currentListId) li.classList.add("active");
@@ -355,10 +356,43 @@ listTitleEl.oninput = () => {
 };
 
 /* ========================= TOGGLE DONE ========================= */
+function updateToggleDoneText() {
+  toggleDoneBtn.textContent = showDone
+    ? "Masquer les tâches terminées"
+    : "Afficher les tâches terminées";
+}
+
 toggleDoneBtn.onclick = () => {
   showDone = !showDone;
+  updateToggleDoneText();
   renderTodos();
 };
+
+/* ================= BURGER MENU ================= */
+
+const burgerBtn = document.getElementById("burgerBtn");
+const sidebar = document.getElementById("todoSidebar");
+const overlay = document.getElementById("sidebarOverlay");
+
+function openMenu() {
+  sidebar.classList.add("open");
+  overlay.classList.add("active");
+  document.body.classList.add("menu-open");
+  burgerBtn.setAttribute("aria-expanded", "true");
+}
+
+function closeMenu() {
+  sidebar.classList.remove("open");
+  overlay.classList.remove("active");
+  document.body.classList.remove("menu-open");
+  burgerBtn.setAttribute("aria-expanded", "false");
+}
+
+burgerBtn.addEventListener("click", openMenu);
+overlay.addEventListener("click", closeMenu);
+
+// ferme quand on clique sur une liste
+document.getElementById("lists").addEventListener("click", closeMenu);
 
 /* ========================= ANIMATION ========================= */
 function animateContent() {
@@ -369,6 +403,7 @@ function animateContent() {
   el.classList.add("fade");
 }
 
-/* ========================= INITIAL RENDER ========================= */
+/* ======================= INITIAL RENDER ======================= */
 renderLists();
 renderTodos();
+updateToggleDoneText();

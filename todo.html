@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>To-do</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="styles/css/styles.css" />
     <link
       rel="shortcut icon"
@@ -12,9 +14,21 @@
   </head>
 
   <body class="page todo_page">
+    <!-- HEADER -->
     <header class="app-header">
+      <button
+        id="burgerBtn"
+        class="burger-btn"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
       <div class="logo">
-        <a href="/index.html"><img src="/assets/logo/logo.png" alt="Logo" /></a>
+        <a href="/index.html">
+          <img src="/assets/logo/logo.png" alt="Logo" />
+        </a>
       </div>
 
       <nav class="breadcrumb">
@@ -24,20 +38,23 @@
       </nav>
     </header>
 
+    <!-- OVERLAY -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- LAYOUT -->
     <section class="todo-layout">
-      <!-- SIDEBAR LISTES -->
-      <aside class="todo-sidebar">
+      <!-- SIDEBAR -->
+      <aside class="todo-sidebar" id="todoSidebar">
         <h2>Mes listes</h2>
         <ul id="lists" class="lists"></ul>
         <button id="addList" class="add-list-btn">+ Nouvelle liste</button>
       </aside>
 
-      <!-- CONTENU TODO -->
+      <!-- CONTENT -->
       <main class="todo-content fade">
-        <!-- HEADER LISTE -->
         <header class="list-header">
           <div class="list-meta">
-            <select id="iconPicker" class="picker">
+            <select id="iconPicker">
               <option>📌</option>
               <option>📝</option>
               <option>🔥</option>
@@ -48,23 +65,24 @@
               <option>🎶</option>
               <option>📖</option>
             </select>
-            <input type="color" id="colorPicker" class="color-picker" />
+
+            <input type="color" id="colorPicker" />
             <h1 id="listTitle" contenteditable="true"></h1>
           </div>
+
           <div class="list-actions">
-            <button id="duplicateList">⧉</button>
-            <button id="deleteList">🗑</button>
+            <button id="duplicateList"><img src="/assets/icons/duplicate.png" alt="dupliquer"></button>
+            <button id="deleteList"><img src="/assets/icons/delete.png" alt="supprimer"></button>
           </div>
         </header>
 
-        <!-- LISTE TÂCHES -->
         <ul id="todoList" class="list"></ul>
 
-        <!-- FOOTER -->
         <footer class="todo-footer">
-          <button id="toggleDone" class="ghost">
+          <button id="toggleDone">
             Afficher / masquer tâches terminées
           </button>
+
           <form id="todoForm" class="input-group">
             <input id="todoInput" placeholder="Ajouter une tâche" />
             <button type="submit">+</button>

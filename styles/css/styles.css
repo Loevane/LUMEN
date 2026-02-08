@@ -26,12 +26,24 @@
   --font-special: "Special Gothic Expanded One", sans-serif;
 }
 
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
 /* Hover simple pour card ou module */
 /* custom de la side bar de scroll */
 /* ========================================================== */
 /* ------------------------- STYLES ------------------------ */
 /* ========================================================== */
 /* ========================= GLOBAL ========================= */
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   margin: 0;
@@ -42,6 +54,15 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* ========================= INPUTS ========================= */
@@ -61,13 +82,31 @@ input::placeholder {
 
 /* ========================= BUTTONS ========================= */
 button {
+  position: relative;
+  overflow: hidden;
   background: var(--accent);
   color: white;
   border: none;
   border-radius: var(--radius-small);
-  padding: var(--button-padding);
   cursor: pointer;
   transition: all 0.3s ease;
+}
+button:hover {
+  scale: 1.12;
+}
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  transition: none;
+}
+button:hover::before {
+  animation: shine 1s forwards;
 }
 
 /* ========================= HERO / HEADER ========================= */
@@ -264,9 +303,10 @@ button {
 /* ========================= TODO PAGE ========================= */
 .todo-layout {
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 32px;
-  flex: 1 1 auto;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  padding: 24px;
+  flex: 1;
   min-height: 0;
 }
 .todo-layout .todo-sidebar {
@@ -298,7 +338,10 @@ button {
   display: flex;
   gap: 10px;
   align-items: center;
-  border-left: 4px solid transparent;
+  border-left: 6px solid transparent;
+  border-radius: var(--radius-small);
+  padding-left: 14px;
+  position: relative;
   transition: all 0.3s ease;
 }
 .todo-layout .todo-sidebar ul li:hover {
@@ -320,13 +363,34 @@ button {
 .todo-layout .todo-sidebar .add-list-btn {
   margin-top: auto;
   flex-shrink: 0;
+  min-height: 48px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
   background: var(--accent);
   color: white;
   border: none;
   border-radius: var(--radius-small);
-  padding: var(--button-padding);
   cursor: pointer;
   transition: all 0.3s ease;
+}
+.todo-layout .todo-sidebar .add-list-btn:hover {
+  scale: 1.12;
+}
+.todo-layout .todo-sidebar .add-list-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.todo-layout .todo-sidebar .add-list-btn:hover::before {
+  animation: shine 1s forwards;
 }
 .todo-layout .todo-content {
   display: flex;
@@ -336,6 +400,7 @@ button {
   border-radius: var(--radius);
   padding: 24px;
   min-height: 0;
+  padding: 20px;
 }
 .todo-layout .todo-content #todoList {
   flex: 1 1 auto;
@@ -350,7 +415,36 @@ button {
   flex-shrink: 0;
 }
 .todo-layout .todo-content .todo-footer button {
+  position: relative;
+  overflow: hidden;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  transition: all 0.3s ease;
   margin-bottom: 5px;
+  height: 30px;
+}
+.todo-layout .todo-content .todo-footer button:hover {
+  scale: 1.12;
+}
+.todo-layout .todo-content .todo-footer button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.todo-layout .todo-content .todo-footer button:hover::before {
+  animation: shine 1s forwards;
+}
+.todo-layout .todo-content .todo-footer button:hover {
+  scale: 1.01;
 }
 .todo-layout .todo-content .todo-footer #todoForm {
   display: flex;
@@ -366,13 +460,33 @@ button {
   color: white;
 }
 .todo-layout .todo-content .todo-footer #todoForm button {
+  position: relative;
+  overflow: hidden;
   background: var(--accent);
   color: white;
   border: none;
   border-radius: var(--radius-small);
-  padding: var(--button-padding);
   cursor: pointer;
   transition: all 0.3s ease;
+  height: 100%;
+  width: 25px;
+}
+.todo-layout .todo-content .todo-footer #todoForm button:hover {
+  scale: 1.12;
+}
+.todo-layout .todo-content .todo-footer #todoForm button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.todo-layout .todo-content .todo-footer #todoForm button:hover::before {
+  animation: shine 1s forwards;
 }
 .todo-layout .todo-content .list-header {
   display: flex;
@@ -386,42 +500,100 @@ button {
   justify-content: flex-start;
   align-items: center;
   gap: 12px;
+  /* ========== ICON & COLOR PICKERS =========== */
+  /* ICON PICKER */
+  /* COLOR PICKER */
 }
 .todo-layout .todo-content .list-header .list-meta #listTitle {
   margin: 0;
   font-size: 1.6rem;
   outline: none;
 }
-.todo-layout .todo-content .list-header .list-meta .picker,
-.todo-layout .todo-content .list-header .list-meta .color-picker {
-  cursor: pointer;
-  border: none;
-  border-radius: var(--radius-small);
-}
-.todo-layout .todo-content .list-header .list-meta .picker {
-  background: #1c2140;
-  font-size: 30px;
-  padding: 4px 6px;
+.todo-layout .todo-content .list-header .list-meta #iconPicker {
+  appearance: none;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 26px;
   color: white;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.2s ease, border 0.2s ease;
 }
-.todo-layout .todo-content .list-header .list-meta .color-picker {
+.todo-layout .todo-content .list-header .list-meta #iconPicker:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.todo-layout .todo-content .list-header .list-meta #iconPicker:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(143, 107, 179, 0.6);
+}
+.todo-layout .todo-content .list-header .list-meta #colorPicker {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
   width: 34px;
   height: 34px;
+  border-radius: 50%;
   padding: 0;
-  border-radius: 60%;
-  background: none;
+  cursor: pointer;
+  background: transparent;
+  overflow: hidden;
+}
+.todo-layout .todo-content .list-header .list-meta #colorPicker:hover {
+  transform: scale(1.05);
+}
+.todo-layout .todo-content .list-header .list-meta #colorPicker:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(143, 107, 179, 0.6);
+}
+.todo-layout .todo-content .list-header .list-meta #colorPicker:-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.todo-layout .todo-content .list-header .list-meta #colorPicker:-webkit-color-swatch,
+.todo-layout .todo-content .list-header .list-meta #colorPicker :-moz-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+.todo-layout .todo-content .list-header .list-actions {
+  display: flex;
 }
 .todo-layout .todo-content .list-header .list-actions button {
+  position: relative;
+  overflow: hidden;
   background: var(--accent);
   color: white;
   border: none;
   border-radius: var(--radius-small);
-  padding: var(--button-padding);
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 25px;
-  padding: 0;
-  width: 35px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+.todo-layout .todo-content .list-header .list-actions button:hover {
+  scale: 1.12;
+}
+.todo-layout .todo-content .list-header .list-actions button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.todo-layout .todo-content .list-header .list-actions button:hover::before {
+  animation: shine 1s forwards;
+}
+.todo-layout .todo-content .list-header .list-actions button img {
+  width: 25px;
+  height: 25px;
 }
 .todo-layout .todo-content .todo-item {
   display: flex;
@@ -489,14 +661,43 @@ button {
   text-align: left;
 }
 .todo-layout .todo-content .todo-item .delete {
-  background: var(--accent);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-hero-overlay);
   color: white;
   border: none;
   border-radius: var(--radius-small);
-  padding: var(--button-padding);
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 4px 10px;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+}
+.todo-layout .todo-content .todo-item .delete:hover {
+  scale: 1.12;
+}
+.todo-layout .todo-content .todo-item .delete::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.todo-layout .todo-content .todo-item .delete:hover::before {
+  animation: shine 1s forwards;
+}
+.todo-layout .todo-content .todo-item .delete:hover {
+  background-color: var(--accent);
 }
 .todo-layout .todo-content .todo-item .important {
   background: none;
@@ -629,19 +830,40 @@ button {
   flex: 0 0 auto;
   display: flex;
   justify-content: flex-start;
+  gap: 16px;
   align-items: center;
-  padding: 0 24px;
-  margin-bottom: 20px;
+  padding: 0 20px;
   background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(8px);
   border-radius: var(--radius);
-  z-index: 10;
+  position: relative;
+  z-index: 5;
 }
-.app-header nav {
+.app-header .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-left: 30px;
 }
-.app-header nav .slash {
-  margin: 5px;
+.app-header .breadcrumb a {
+  color: var(--text-main);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.app-header .breadcrumb a:hover {
+  opacity: 1;
+}
+.app-header .breadcrumb .slash {
+  opacity: 0.4;
+}
+.app-header .breadcrumb span:last-child {
+  background: rgba(143, 107, 179, 0.432);
+  color: white;
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  line-height: 1;
 }
 .app-header .logo {
   display: flex;
@@ -695,6 +917,65 @@ button {
 }
 .todo-sidebar ul::-webkit-scrollbar-thumb:hover {
   background-color: #9b7ad8;
+}
+
+/* ========================= RESPONSIVE ========================= */
+/* ---------------------- BURGER MENU -----------------------*/
+.burger-btn {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 40;
+}
+.sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ---------------- TABLETTE / MOBILE (≤ 1024x) ------------------*/
+@media (max-width: 1024px) {
+  .burger-btn {
+    display: block;
+  }
+  .todo-layout {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+  .todo-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 50;
+    border-radius: 0;
+  }
+  .todo-sidebar.open {
+    transform: translateX(0);
+  }
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+/* ------------------- PETIT MOBILE (≤ 480px) -------------------*/
+@media (max-width: 480px) {
+  .todo-sidebar {
+    width: 240px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

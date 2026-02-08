@@ -17,19 +17,51 @@
   box-shadow: $shadow;
 }
 
-@mixin button(
-  $bg: var(--accent),
-  $color: white,
-  $radius: var(--radius-small),
-  $padding: var(--button-padding)
-) {
+@mixin button($bg: var(--accent), $color: white, $radius: var(--radius-small)) {
+  position: relative; // nécessaire pour le pseudo-élément
+  overflow: hidden; // pour que la brillance ne dépasse pas le bouton
   background: $bg;
   color: $color;
   border: none;
   border-radius: $radius;
-  padding: $padding;
   cursor: pointer;
   @include transition();
+
+  &:hover {
+    scale: calc(1.12);
+  }
+
+  // Pseudo-élément pour la brillance
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%; // commence à gauche hors du bouton
+    width: 50%; // largeur de la brillance
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-20deg); // pour l'effet diagonal
+    transition: none;
+  }
+
+  &:hover::before {
+    animation: shine 1s forwards;
+  }
+}
+
+// Animation de la brillance
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
 }
 
 @mixin transition($props: all, $time: 0.3s, $ease: ease) {
