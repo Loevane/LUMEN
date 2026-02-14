@@ -32,10 +32,24 @@ updateDateTime();
 setInterval(updateDateTime, 1000);
 
 // ===================== COUNTS =====================
-$("todoCount").textContent =
-  JSON.parse(localStorage.getItem("todos"))?.length || 0;
-$("habitCount").textContent =
-  JSON.parse(localStorage.getItem("habits"))?.length || 0;
+const lists = JSON.parse(localStorage.getItem("todoLists")) || [];
+
+let pendingCount = 0;
+let importantCount = 0;
+
+lists.forEach((list) => {
+  // ❌ on ignore la liste "Important"
+  if (list.name === "Important") return;
+
+  list.todos.forEach((todo) => {
+    if (!todo.done) pendingCount++;
+    if (todo.important) importantCount++;
+  });
+});
+
+$("todoCount").textContent = pendingCount;
+$("importantCount").textContent = importantCount;
+$("habitCount").textContent = importantCount; // ou crée un nouvel id importantCount
 
 // ===================== PANELS =====================
 const panels = ["stopwatch", "timer", "pomodoro"];
@@ -152,3 +166,5 @@ navigator.geolocation.getCurrentPosition(async (pos) => {
       ? "assets/icons/sun.png"
       : "assets/icons/cloud.png";
 });
+
+window.addEventListener("storage", () => location.reload());

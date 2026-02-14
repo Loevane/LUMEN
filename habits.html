@@ -1,21 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Habits</title>
-  <link rel="stylesheet" href="styles/css/styles.css">
-</head>
-<body class="page">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Habits - Life Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/css/styles.css" />
+    <link rel="shortcut icon" href="/assets/logo/favicon.png" />
+  </head>
+  <body class="page habits_page">
+    <!-- HEADER -->
+    <header class="app-header">
+      <button id="burgerBtn" class="burger-btn">☰</button>
+      <div class="logo">
+        <a href="/index.html"><img src="/assets/logo/logo.png" alt="Logo" /></a>
+      </div>
+      <nav class="breadcrumb">
+        <a href="index.html">Accueil</a>
+        <span class="slash"> / </span>
+        <span>Habits</span>
+      </nav>
+    </header>
 
-<h1>Habits</h1>
+    <!-- OVERLAY SIDEBAR MOBILE -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-<form id="habitForm" class="input-group">
-  <input type="text" id="habitInput" placeholder="Nouvelle habitude">
-  <button>+</button>
-</form>
+    <!-- DASHBOARD -->
+    <main class="habits-dashboard">
+      <!-- SIDEBAR -->
+      <aside class="habits-sidebar" id="habitSidebar">
+        <h2>Catégories</h2>
+        <ul id="categories"></ul>
+        <button id="addHabit" class="add-btn">+ Nouvelle habitude</button>
+      </aside>
 
-<ul id="habitList" class="list"></ul>
+      <!-- MAIN CONTENT -->
+      <section class="habits-content fade">
+        <!-- STATS GLOBALES -->
+        <div class="habits-stats card">
+          <div>🔥 Total streak : <strong id="totalStreak">0</strong></div>
+          <div>🏆 Best streak : <strong id="bestStreak">0</strong></div>
+          <div>📈 Habits complétés : <strong id="totalDone">0%</strong></div>
+        </div>
 
-<script src="js/habits.js"></script>
-</body>
+        <!-- LISTE HABITUDES -->
+        <ul id="habitList" class="habits-list"></ul>
+      </section>
+    </main>
+
+    <!-- MODAL CREATION HABIT -->
+    <div id="habitModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Nouvelle Habitude</h2>
+        <form id="habitForm">
+          <label>
+            Nom de l'habitude
+            <input type="text" name="name" required />
+          </label>
+
+          <label>
+            Catégorie
+            <select name="category" id="categorySelect" required>
+              <option value="Santé">Santé</option>
+              <option value="Productivité">Productivité</option>
+              <option value="Perso">Perso</option>
+              <option value="Loisirs">Loisirs</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </label>
+
+          <div id="customCategoryInputs" class="hidden">
+            <label>
+              Nom catégorie
+              <input type="text" name="customCategoryName" />
+            </label>
+            <label>
+              Couleur
+              <input type="color" name="customCategoryColor" value="#845EC2" />
+            </label>
+            <label>
+              Icône
+              <input
+                type="text"
+                name="customCategoryIcon"
+                placeholder="Emoji"
+              />
+            </label>
+          </div>
+
+          <label>
+            Icône de l’habitude
+            <input type="text" name="habitIcon" placeholder="Emoji" />
+          </label>
+
+          <label>
+            Combien de fois par semaine ?
+            <input type="number" name="weeklyGoal" min="1" value="3" required />
+          </label>
+
+          <div class="modal-actions">
+            <button type="button" id="closeModal">Annuler</button>
+            <button type="submit">Créer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- AUDIO CONFETTI -->
+    <audio id="bell" src="/assets/audio/bell.wav" preload="auto"></audio>
+
+    <!-- SCRIPT -->
+    <script src="js/habits.js"></script>
+  </body>
 </html>

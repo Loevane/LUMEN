@@ -15,6 +15,7 @@
 
   /* Ombres */
   --shadow-soft: 0 10px 30px rgba(255, 255, 255, 0.185);
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
   /* Backgrounds spécifiques */
   --todo-bg: #121213ad;
@@ -28,4 +29,7 @@
   /* Fonts */
   --font-main: "Inter", sans-serif;
   --font-special: "Special Gothic Expanded One", sans-serif;
+
+  --transition: 0.3s ease;
+  --habit-checkbox-size: 18px;
 }
